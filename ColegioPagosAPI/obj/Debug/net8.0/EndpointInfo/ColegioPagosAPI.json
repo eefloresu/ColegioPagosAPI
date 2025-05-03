@@ -1,0 +1,189 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ColegioPagosAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Pagos/cargar": {
+      "post": {
+        "tags": [
+          "Pagos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoColegiatura"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoColegiatura"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoColegiatura"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Pagos/pagar/{id}": {
+      "post": {
+        "tags": [
+          "Pagos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Pagos/{id}": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pagos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoColegiatura"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoColegiatura"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoColegiatura"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pagos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PagoColegiatura": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estudianteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "matricula": {
+            "type": "number",
+            "format": "double"
+          },
+          "bus": {
+            "type": "number",
+            "format": "double"
+          },
+          "mora": {
+            "type": "number",
+            "format": "double"
+          },
+          "fechaVencimiento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
