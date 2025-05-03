@@ -2694,11 +2694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\eefloresu\\source\\repos\\ColegioPagosAPI\\ColegioPagosAPI\\ColegioPagosAPI.csproj",
+      "projectUniqueName": "C:\\Users\\eefloresu\\Documents\\ColegioPagosAPI\\ColegioPagosAPI\\ColegioPagosAPI.csproj",
       "projectName": "ColegioPagosAPI",
-      "projectPath": "C:\\Users\\eefloresu\\source\\repos\\ColegioPagosAPI\\ColegioPagosAPI\\ColegioPagosAPI.csproj",
+      "projectPath": "C:\\Users\\eefloresu\\Documents\\ColegioPagosAPI\\ColegioPagosAPI\\ColegioPagosAPI.csproj",
       "packagesPath": "C:\\Users\\eefloresu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\eefloresu\\source\\repos\\ColegioPagosAPI\\ColegioPagosAPI\\obj\\",
+      "outputPath": "C:\\Users\\eefloresu\\Documents\\ColegioPagosAPI\\ColegioPagosAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
