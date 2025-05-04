@@ -8,3 +8,4 @@
 
 Gestor Base de Datos: MySQL
 Cadena de Conexión: appsettings.json
+* En la carpeta recursos está el script de la base de datos colegiodb.sql
