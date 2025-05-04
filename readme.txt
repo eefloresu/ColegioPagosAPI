@@ -7,4 +7,4 @@
 | `DELETE`    | `api/pagos/{id}`   	    | Eliminar un pago por su ID   |
 
 Gestor Base de Datos: MySQL
-Cadena de Conexión: ColegioPagosAPI\ColegioPagosAPI\appsettings.json
+Cadena de Conexión: appsettings.json
