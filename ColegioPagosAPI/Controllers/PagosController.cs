@@ -52,7 +52,7 @@ namespace ColegioPagosAPI.Controllers
         }
         /* Busca un pago por ID.
          * Devuelve 404 si no existe, o el objeto PagoColegiatura si existe.*/
-        [HttpGet("{id}")]
+        [HttpGet("consultar/{id}")]
         public async Task<IActionResult> Consultar(int id)
         {
             var pago = await _context.Pagos.FindAsync(id);
@@ -62,7 +62,7 @@ namespace ColegioPagosAPI.Controllers
         /*Actualiza los campos del pago especificado por ID.
          * Reemplaza los datos por los del nuevo objeto recibido.
          * Devuelve el objeto actualizado.*/
-        [HttpPut("{id}")]
+        [HttpPut("Editar/{id}")]
         public async Task<IActionResult> Actualizar(int id, PagoColegiatura pagoActualizado)
         {
             if (id != pagoActualizado.Id) return BadRequest();
@@ -72,7 +72,7 @@ namespace ColegioPagosAPI.Controllers
         }
         /*Elimina el pago con el ID dado.
          * Devuelve 404 si no lo encuentra, o 200 OK si lo elimina.*/
-        [HttpDelete("{id}")]
+        [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Eliminar(int id)
         {
             var pago = await _context.Pagos.FindAsync(id);

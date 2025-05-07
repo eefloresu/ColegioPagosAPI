@@ -59,7 +59,7 @@
         }
       }
     },
-    "/api/Pagos/{id}": {
+    "/api/Pagos/consultar/{id}": {
       "get": {
         "tags": [
           "Pagos"
@@ -80,7 +80,9 @@
             "description": "Success"
           }
         }
-      },
+      }
+    },
+    "/api/Pagos/Editar/{id}": {
       "put": {
         "tags": [
           "Pagos"
@@ -120,7 +122,9 @@
             "description": "Success"
           }
         }
-      },
+      }
+    },
+    "/api/Pagos/Eliminar/{id}": {
       "delete": {
         "tags": [
           "Pagos"

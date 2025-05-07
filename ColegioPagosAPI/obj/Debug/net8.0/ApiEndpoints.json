@@ -1,8 +1,24 @@
 [
   {
     "ContainingType": "ColegioPagosAPI.Controllers.PagosController",
+    "Method": "CargarPago",
+    "RelativePath": "api/Pagos/cargar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pago",
+        "Type": "ColegioPagosAPI.Models.PagoColegiatura",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ColegioPagosAPI.Controllers.PagosController",
     "Method": "Consultar",
-    "RelativePath": "api/Pagos/{id}",
+    "RelativePath": "api/Pagos/consultar/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -18,7 +34,7 @@
   {
     "ContainingType": "ColegioPagosAPI.Controllers.PagosController",
     "Method": "Actualizar",
-    "RelativePath": "api/Pagos/{id}",
+    "RelativePath": "api/Pagos/Editar/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -39,7 +55,7 @@
   {
     "ContainingType": "ColegioPagosAPI.Controllers.PagosController",
     "Method": "Eliminar",
-    "RelativePath": "api/Pagos/{id}",
+    "RelativePath": "api/Pagos/Eliminar/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -47,22 +63,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ColegioPagosAPI.Controllers.PagosController",
-    "Method": "CargarPago",
-    "RelativePath": "api/Pagos/cargar",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "pago",
-        "Type": "ColegioPagosAPI.Models.PagoColegiatura",
         "IsRequired": true
       }
     ],
