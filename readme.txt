@@ -9,3 +9,9 @@
 Gestor Base de Datos: MySQL
 Cadena de Conexión: appsettings.json
 * En la carpeta recursos está el script de la base de datos colegiodb.sql
+ ________________________________________________________________________________________________
+|Usar variables de entorno para la conexión a la base de datos:					 |
+|* Definir la variable de entorno (CMD o PowerShell)						 |
+|								                                 |
+|setx DefaultConnection "server=localhost;database=colegiodb;user=root;password=mi_clave_segura;"|
+|________________________________________________________________________________________________|
