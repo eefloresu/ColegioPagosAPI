@@ -1,2 +1,15 @@
-echo "*.vs/" >> .gitignore
-
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+*.swp
+*.dbmdl
+*.log
+*.DS_Store
+*.vscode/
+appsettings.Development.json
+appsettings.Local.json
+.env
