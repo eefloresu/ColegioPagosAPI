@@ -3,6 +3,7 @@ using ColegioPagosAPI.Data;
 using ColegioPagosAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization; // Agrega esto
 
 namespace ColegioPagosAPI.Controllers
 {
@@ -29,6 +30,8 @@ namespace ColegioPagosAPI.Controllers
             _context = context;
         }
 
+        // Solo Administrador puede cargar pagos
+        [Authorize(Roles = "Administrador")]
         /* Crea un nuevo registro de pago con estado "Pendiente".
          * Guarda en la base de datos y devuelve el objeto como respuesta.*/
         [HttpPost("cargar")]
@@ -38,6 +41,9 @@ namespace ColegioPagosAPI.Controllers
             await _context.SaveChangesAsync();
             return Ok(pago);
         }
+
+        // Cliente y Administrador pueden pagar
+        [Authorize(Roles = "Cliente,Administrador")]
         /* Busca el pago por ID.
          * Si no existe, devuelve 404 NotFound.
          * Si existe, cambia su estado a "Pagado" y guarda.*/
@@ -50,6 +56,9 @@ namespace ColegioPagosAPI.Controllers
             await _context.SaveChangesAsync();
             return Ok(pago);
         }
+
+        // Cliente y Administrador pueden consultar
+        [Authorize(Roles = "Cliente,Administrador")]
         /* Busca un pago por ID.
          * Devuelve 404 si no existe, o el objeto PagoColegiatura si existe.*/
         [HttpGet("consultar/{id}")]
@@ -59,6 +68,16 @@ namespace ColegioPagosAPI.Controllers
             if (pago == null) return NotFound();
             return Ok(pago);
         }
+
+        [HttpGet("publico")]
+        public IActionResult Publico()
+        {
+            return Ok("Funciona sin autenticación");
+        }
+
+
+        // Solo Administrador puede editar
+        [Authorize(Roles = "Administrador")]
         /*Actualiza los campos del pago especificado por ID.
          * Reemplaza los datos por los del nuevo objeto recibido.
          * Devuelve el objeto actualizado.*/
@@ -70,6 +89,9 @@ namespace ColegioPagosAPI.Controllers
             await _context.SaveChangesAsync();
             return Ok(pagoActualizado);
         }
+
+        // Solo Administrador puede eliminar
+        [Authorize(Roles = "Administrador")]
         /*Elimina el pago con el ID dado.
          * Devuelve 404 si no lo encuentra, o 200 OK si lo elimina.*/
         [HttpDelete("Eliminar/{id}")]

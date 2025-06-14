@@ -13,4 +13,7 @@ Gestor Base de Datos: MySQL
 |* Definir la variable de entorno (CMD o PowerShell)						 |
 |								                                 |
 |setx DefaultConnection "server=localhost;database=colegiodb;user=root;password=mi_clave_segura;"|
+|                                                                                                | 
+|setx JWT_SECRET_KEY "tu_clave_secreta"                                                          |
+|                                                                                                |
 |________________________________________________________________________________________________|

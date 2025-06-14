@@ -8,6 +8,7 @@ namespace ColegioPagosAPI.Data
         public ColegioDbContext(DbContextOptions<ColegioDbContext> options) : base(options) { }
 
         public DbSet<PagoColegiatura> Pagos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
 
