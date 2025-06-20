@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\eefloresu\\Documents\\GitHub\\ColegioPagosAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9C3831C1-B427-4A35-8EBA-F588919E49B3}|ColegioPagosAPI\\ColegioPagosAPI.csproj|c:\\users\\eefloresu\\documents\\github\\colegiopagosapi\\colegiopagosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C3831C1-B427-4A35-8EBA-F588919E49B3}|ColegioPagosAPI\\ColegioPagosAPI.csproj|solutionrelative:colegiopagosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9C3831C1-B427-4A35-8EBA-F588919E49B3}|ColegioPagosAPI\\ColegioPagosAPI.csproj|c:\\users\\eefloresu\\documents\\github\\colegiopagosapi\\colegiopagosapi\\controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9C3831C1-B427-4A35-8EBA-F588919E49B3}|ColegioPagosAPI\\ColegioPagosAPI.csproj|solutionrelative:colegiopagosapi\\controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C3831C1-B427-4A35-8EBA-F588919E49B3}|ColegioPagosAPI\\ColegioPagosAPI.csproj|c:\\users\\eefloresu\\documents\\github\\colegiopagosapi\\colegiopagosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C3831C1-B427-4A35-8EBA-F588919E49B3}|ColegioPagosAPI\\ColegioPagosAPI.csproj|solutionrelative:colegiopagosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9C3831C1-B427-4A35-8EBA-F588919E49B3}|ColegioPagosAPI\\ColegioPagosAPI.csproj|c:\\users\\eefloresu\\documents\\github\\colegiopagosapi\\colegiopagosapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +30,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PagosController.cs",
               "DocumentMoniker": "C:\\Users\\eefloresu\\Documents\\GitHub\\ColegioPagosAPI\\ColegioPagosAPI\\Controllers\\PagosController.cs",
               "RelativeDocumentMoniker": "ColegioPagosAPI\\Controllers\\PagosController.cs",
               "ToolTip": "C:\\Users\\eefloresu\\Documents\\GitHub\\ColegioPagosAPI\\ColegioPagosAPI\\Controllers\\PagosController.cs",
               "RelativeToolTip": "ColegioPagosAPI\\Controllers\\PagosController.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAQwF8AAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAqwF8AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-07T22:47:39.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\eefloresu\\Documents\\GitHub\\ColegioPagosAPI\\ColegioPagosAPI\\Program.cs",
+              "RelativeDocumentMoniker": "ColegioPagosAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\eefloresu\\Documents\\GitHub\\ColegioPagosAPI\\ColegioPagosAPI\\Program.cs",
+              "RelativeToolTip": "ColegioPagosAPI\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAABoAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T20:21:59.662Z",
               "EditorCaption": ""
             },
             {
@@ -52,19 +65,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-05-07T20:22:13.323Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\eefloresu\\Documents\\GitHub\\ColegioPagosAPI\\ColegioPagosAPI\\Program.cs",
-              "RelativeDocumentMoniker": "ColegioPagosAPI\\Program.cs",
-              "ToolTip": "C:\\Users\\eefloresu\\Documents\\GitHub\\ColegioPagosAPI\\ColegioPagosAPI\\Program.cs",
-              "RelativeToolTip": "ColegioPagosAPI\\Program.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T20:21:59.662Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",

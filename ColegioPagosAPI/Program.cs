@@ -10,12 +10,13 @@ using Microsoft.AspNetCore.Builder;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.OpenApi.Models;
+//using Microsoft.Extensions.Hosting;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddDbContext<ColegioDbContext>(options =>
-//    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-//    new MySqlServerVersion(new Version(8, 0, 40))));
+//builder.Host.UseWindowsService();
 
 var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 
@@ -26,10 +27,59 @@ builder.Services.AddDbContext<ColegioDbContext>(options =>
     options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 40))));
 
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configuración de CORS
+var allowedOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS") ?? "";
+var origins = allowedOrigins.Split(';', StringSplitOptions.RemoveEmptyEntries);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins(origins)
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+// Configuración de Swagger con soporte para JWT
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Colegio Pagos API",
+        Version = "v1",
+        Description = "API para gestión de pagos de colegiatura con autenticación JWT"
+    });
+
+    // Configuración para JWT en Swagger
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header usando el esquema Bearer. Ejemplo: \"Authorization: Bearer {token}\"",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 
 var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
 if (string.IsNullOrWhiteSpace(jwtKey))
@@ -77,8 +127,10 @@ builder.Services.AddAuthorization();
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
+app.UseCors("CorsPolicy"); // 👈 Esto activa la política definida
 app.Use(async (context, next) =>
 {
     context.Request.Headers.TryGetValue("Authorization", out var authHeader);
@@ -99,4 +151,3 @@ app.Use(async (context, next) =>
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-

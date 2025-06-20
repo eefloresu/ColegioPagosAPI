@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Probar Login API</title>
+  </head>
+  <body>
+    <h3>Login</h3>
+    <form id="formLogin" onsubmit="Login(event)">
+        <input type="text" id="nombreUsuario" placeholder="Nombre de usuario" required /><br />
+        <input type="password" id="clave" placeholder="Clave" required /><br />
+        <button type="submit">Login</button>
+    </form>
+    <pre id="resultado"></pre>
+    <script>
+        function Login(event) {
+            event.preventDefault();
+            const data = {
+                nombreUsuario: document.getElementById("nombreUsuario").value.trim(),
+                clave: document.getElementById("clave").value.trim(),
+            };
+            fetch("http://localhost:5159/api/Auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Ajusta esto según cómo tu API devuelva el token
+                localStorage.setItem('jwt', data.token); // o el nombre correcto del campo
+                document.getElementById("resultado").textContent = "Login exitoso. Token guardado.";
+            });
+        }
+    </script>
+
+    <h3>Registrar Usuario</h3>
+    <form id="formRegistro" onsubmit="registrarUsuario(event)">
+        <input type="text" id="NombreUsuario" placeholder="Nombre de usuario" required /><br />
+        <input type="password" id="Clave" placeholder="Clave" required /><br />
+        <input type="text" id="Role" placeholder="Rol" required /><br />
+        <button type="submit">Registrar</button>
+    </form>
+    <pre id="resultado"></pre>
+    <script>
+        function registrarUsuario(event) {
+            event.preventDefault();
+            const data = {
+                Id: 0,
+                NombreUsuario: document.getElementById("NombreUsuario").value.trim(),
+                Clave: document.getElementById("Clave").value.trim(),
+                Role: document.getElementById("Role").value.trim()
+            };
+            console.log(data); // Verifica que los valores no estén vacíos
+            fetch("http://localhost:5159/api/Auth/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            })
+            .then(r => r.text())
+            .then(d => document.getElementById("resultado").textContent = d)
+            .catch(e => document.getElementById("resultado").textContent = e);
+        }
+    </script>
+
+    <h3>Cargar Pago</h3>
+    <form id="formPago" onsubmit="cargarPago(event)">
+        <input type="number" id="estudianteId" placeholder="ID Estudiante" required /><br />
+        <input type="text" id="nombreCliente" placeholder="Nombre Cliente" required /><br />
+        <input type="number" id="matricula" placeholder="Matrícula" required /><br />
+        <input type="number" id="bus" placeholder="Bus" required /><br />
+        <input type="number" id="mora" placeholder="Mora" required /><br />
+        <input type="datetime-local" id="fechaVencimiento" placeholder="Fecha Vencimiento" required /><br />
+        <input type="text" id="estado" placeholder="Estado" required /><br />
+        <button type="submit">Cargar Pago</button>
+    </form>
+    <pre id="resultado"></pre>
+    <script>
+        function cargarPago(event) {
+            event.preventDefault();
+            const data = {
+                id: 0,
+                estudianteId: parseInt(document.getElementById("estudianteId").value),
+                nombreCliente: document.getElementById("nombreCliente").value,
+                matricula: parseFloat(document.getElementById("matricula").value),
+                bus: parseFloat(document.getElementById("bus").value),
+                mora: parseFloat(document.getElementById("mora").value),
+                fechaVencimiento: new Date(
+                    document.getElementById("fechaVencimiento").value
+                ).toISOString(),
+                estado: document.getElementById("estado").value,
+            };
+
+            // Recupera el token guardado después del login
+            const token = localStorage.getItem("jwt");
+
+            fetch("http://localhost:5159/api/Pagos/cargar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token,
+                },
+                body: JSON.stringify(data),
+            })
+                .then((r) => r.text())
+                .then((d) => (document.getElementById("resultado").textContent = d))
+                .catch((e) => (document.getElementById("resultado").textContent = e));
+        }
+    </script>
+
+    <h3>Pagar Pago</h3>
+    <!-- Formulario para pagar -->
+    <form id="formPagar" onsubmit="pagarPago(event)">
+        <input type="number" id="pagoIdPagar" placeholder="ID del pago" required /><br />
+        <button type="submit">Pagar</button>
+    </form>
+
+    <h3>Consultar</h3>
+    <!-- Formulario para consultar -->
+    <form id="formConsultar" onsubmit="consultarPago(event)">
+        <input type="number" id="pagoIdConsultar" placeholder="ID del pago" required /><br />
+        <button type="submit">Consultar</button>
+    </form>
+    <pre id="resultado"></pre>
+    <script>
+        function pagarPago(event) {
+            event.preventDefault();
+            const pagoId = document.getElementById("pagoIdPagar").value.trim();
+            const token = localStorage.getItem('jwt');
+            fetch("http://localhost:5159/api/Pagos/pagar/" + pagoId, {
+                method: "POST", // O "POST" si tu endpoint lo requiere
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                }
+            })
+            .then(response => response.text())
+            .then(data => document.getElementById("resultado").textContent = data)
+            .catch(error => document.getElementById("resultado").textContent = error);
+        }
+
+        function consultarPago(event) {
+            event.preventDefault();
+            const pagoId = document.getElementById("pagoIdConsultar").value.trim();
+            if (!pagoId || isNaN(pagoId) || Number(pagoId) <= 0) {
+                document.getElementById("resultado").textContent = "Por favor ingresa un ID de pago válido.";
+                return;
+            }
+            const token = localStorage.getItem('jwt');
+            fetch("http://localhost:5159/api/Pagos/consultar/" + pagoId, {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            })
+            .then(response => {
+                if (response.status === 404) {
+                    document.getElementById("resultado").textContent = "Pago no existe.";
+                    return null;
+                }
+                return response.text();
+            })
+            .then(data => {
+                if (data) document.getElementById("resultado").textContent = data;
+            })
+            .catch(error => document.getElementById("resultado").textContent = error);
+        }
+    </script>
+
+    <h3>Editar Pago</h3>
+    <form id="formEditarPago" onsubmit="editarPago(event)">
+        <input type="number" id="editarPagoId" placeholder="ID del pago" required /><br />
+        <input type="number" id="editarEstudianteId" placeholder="ID Estudiante" required /><br />
+        <input type="text" id="editarNombreCliente" placeholder="Nombre Cliente" required /><br />
+        <input type="number" id="editarMatricula" placeholder="Matrícula" required /><br />
+        <input type="number" id="editarBus" placeholder="Bus" required /><br />
+        <input type="number" id="editarMora" placeholder="Mora" required /><br />
+        <input type="datetime-local" id="editarFechaVencimiento" placeholder="Fecha Vencimiento" required /><br />
+        <input type="text" id="editarEstado" placeholder="Estado" required /><br />
+        <button type="submit">Editar Pago</button>
+    </form>
+    <pre id="resultado"></pre>
+    <script>
+        function editarPago(event) {
+            event.preventDefault();
+            const token = localStorage.getItem("jwt");
+            const data = {
+                id: parseInt(document.getElementById("editarPagoId").value),
+                estudianteId: parseInt(document.getElementById("editarEstudianteId").value),
+                nombreCliente: document.getElementById("editarNombreCliente").value,
+                matricula: parseFloat(document.getElementById("editarMatricula").value),
+                bus: parseFloat(document.getElementById("editarBus").value),
+                mora: parseFloat(document.getElementById("editarMora").value),
+                fechaVencimiento: new Date(
+                    document.getElementById("editarFechaVencimiento").value
+                ).toISOString(),
+                estado: document.getElementById("editarEstado").value,
+            };
+
+            fetch("http://localhost:5159/api/Pagos/Editar/" + data.id, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token,
+                },
+                body: JSON.stringify(data),
+            })
+                .then((r) => r.text())
+                .then((d) => (document.getElementById("resultado").textContent = d))
+                .catch((e) => (document.getElementById("resultado").textContent = e));
+        }
+    </script>
+
+    <h3>Eliminar Pago</h3>
+    <form id="formEliminarPago" onsubmit="eliminarPago(event)">
+        <input type="number" id="eliminarPagoId" placeholder="ID del pago" required /><br />
+        <button type="submit">Eliminar</button>
+    </form>
+    <pre id="resultado"></pre>
+    <script>
+        function eliminarPago(event) {
+            event.preventDefault();
+            const pagoId = document.getElementById("eliminarPagoId").value.trim();
+            const token = localStorage.getItem("jwt");
+            fetch("http://localhost:5159/api/Pagos/Eliminar/" + pagoId, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            })
+                .then(response => response.text())
+                .then(data => document.getElementById("resultado").textContent = data)
+                .catch(error => document.getElementById("resultado").textContent = error);
+        }
+    </script>
+
+  </body>
+</html>
