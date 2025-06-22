@@ -11,12 +11,15 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.OpenApi.Models;
-//using Microsoft.Extensions.Hosting;
+
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using Microsoft.Extensions.Hosting;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Host.UseWindowsService();
+builder.Host.UseWindowsService();
 
 var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 
@@ -124,11 +127,13 @@ builder.Services.AddAuthentication("Bearer")
 
 builder.Services.AddAuthorization();
 
+builder.WebHost.UseUrls("http://localhost:5159");
+
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseCors("CorsPolicy"); // 👈 Esto activa la política definida
 app.Use(async (context, next) =>
@@ -150,4 +155,7 @@ app.Use(async (context, next) =>
 });
 app.UseAuthorization();
 app.MapControllers();
+
+File.AppendAllText("C:\\Deploy\\ColegioPagosAPI\\startup.log", $"Iniciando: {DateTime.Now}\n");
+
 app.Run();

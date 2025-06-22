@@ -8,12 +8,16 @@
 
 Gestor Base de Datos: MySQL
 * En la carpeta recursos está el script de la base de datos colegiodb.sql
- ________________________________________________________________________________________________
-|Usar variables de entorno para la conexión a la base de datos:					 |
-|* Definir la variable de entorno (CMD o PowerShell)						 |
-|								                                 |
-|setx DefaultConnection "server=localhost;database=colegiodb;user=root;password=mi_clave_segura;"|
-|                                                                                                | 
-|setx JWT_SECRET_KEY "tu_clave_secreta"                                                          |
-|                                                                                                |
-|________________________________________________________________________________________________|
+ _________________________________________________________________________________________________
+|				                                                                  |
+|* Definir la variable de entorno (CMD o PowerShell)						  |
+|								                                  |
+| setx DefaultConnection "server=localhost;database=colegiodb;user=root;password=mi_clave_segura;"|
+|                                                                                                 | 
+| setx JWT_SECRET_KEY "tu_clave_secreta"						          |
+|												  |
+| setx ALLOWED_ORIGINS "http://localhost:4200;https://colegioapi.com;http://localhost:8080"       |                                                           |
+|                                                                                                 |
+|________________________________________________________________________________________________ |
+
+* Probar CORS en index.html 
